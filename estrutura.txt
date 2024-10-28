@@ -1,0 +1,13 @@
+livraria virtual:
+
+1- tela login/cadastro
+    -user:
+        -id
+        -nome: varchar(55) not null
+        -senha: varchar()
+        -email: varchar(60) unique not null
+        -nascimento: date not null
+        -sexo: enum('M', 'F') not null
+        -permissao: enum('user', 'admin') default 'user'
+        -foto
+
