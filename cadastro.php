@@ -11,6 +11,7 @@
         $sql = "insert into users values(default, '$nome', '$senha', '$email', '$nascimento', '$sexo', default)";
 
         mysqli_query($conexao, $sql);
+        header("location: ./");
     }
 
 ?>
@@ -51,6 +52,7 @@
                 <input type="submit" name="submit" value="Cadastrar-se">
             </section>
         </form>
+        <a href="index.php">Voltar</a>
     </main>
 </body>
 </html>

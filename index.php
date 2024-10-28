@@ -20,6 +20,7 @@
                 <input type="submit" name="submit" value="login">
             </section>
         </form>
+        <a href="cadastro.php">Cadastrar-se</a>
         <?php
             require "conexao.php";
             if(isset($_POST['submit'])){
@@ -34,7 +35,7 @@
                     $user_senha = $dados['senha'];
 
                     if($quantidade_registros == 1 && password_verify($senha, $user_senha)){
-                        echo "ok";
+                        header("location: users/");
                     }else{
                         echo "Email ou senha inválidos";
                     }
