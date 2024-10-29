@@ -4,10 +4,20 @@ livraria virtual:
     -user:
         -id
         -nome: varchar(55) not null
-        -senha: varchar()
+        -senha: varchar(255)
         -email: varchar(60) unique not null
         -nascimento: date not null
         -sexo: enum('M', 'F') not null
         -permissao: enum('user', 'admin') default 'user'
         -foto
+
+2- tela livraria
+    -livros:
+        -id
+        -titulo: varchar(75) not null
+        -autor: varchar(55) not null
+        -genero: varchar(255) not null
+        -editora: varchar(55)
+        -isbn: varchar(13) unique not null
+
 
