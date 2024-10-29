@@ -1,5 +1,6 @@
 <?php 
     require "sessao.php";
+    require "../conexao.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,12 +32,23 @@
             <th>Gênero</th>
             <th>Editora</th>
         </tr>
-        <tr>
-            <th>O pequeno príncipe</th>
-            <td>Antoine de Saint-Exupéry</td>
-            <td>Fábula</td>
-            <td>HarperCollins Brasil</td>
-        </tr>
+        <?php
+            $sql = "select * from livros";
+            $dados = mysqli_query($conexao, $sql);
+            
+            while($itens = mysqli_fetch_assoc($dados)){
+                $titulo = $itens['titulo'];
+                $autor = $itens['autor'];
+                $genero = $itens['genero'];
+                $editora = $itens['editora'];
+                echo "<tr>";
+                    echo "<th>$titulo</th>";
+                    echo "<td>$autor</td>";
+                    echo "<td>$genero</td>";
+                    echo "<td>$editora</td>";
+                echo "</tr>";
+            }
+        ?>
     </table>
 </body>
 </html>
