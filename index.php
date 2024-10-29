@@ -35,6 +35,9 @@
                     $user_senha = $dados['senha'];
 
                     if($quantidade_registros == 1 && password_verify($senha, $user_senha)){
+                        session_start();
+                        $_SESSION['email'] = $email;
+                        $_SESSION['senha'] = $senha;
                         header("location: users/");
                     }else{
                         echo "Email ou senha inválidos";
