@@ -32,7 +32,7 @@
                 if($result = mysqli_query($conexao, $sql)){
                     $quantidade_registros = mysqli_num_rows($result);
                     $dados = mysqli_fetch_assoc($result);
-                    $user_senha = $dados['senha'];
+                    $user_senha = $dados['senha'] ?? "";
 
                     if($quantidade_registros == 1 && password_verify($senha, $user_senha)){
                         session_start();
