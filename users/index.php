@@ -1,5 +1,10 @@
 <?php
     require "../conexao.php";
+
+    $filtro = $_GET['filtro'] ?? 'titulo';
+    $pesquisa = anti_injection($conexao, $_GET['busca'] ?? "");
+    $sql = "select * from livros where $filtro like '%$pesquisa%'";
+    $dados = mysqli_query($conexao, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,14 +25,17 @@
 <body>
     <h1>Livraria Online</h1>
     <main>
-        <nav>
-            <a href="#">pesquisar por autor</a><br>
-            <a href="#">Pesquisar por gênero</a><br>
-            <a href="#">Pesquisar por editora</a><br>
-        </nav>
-
         <form action="<?=$_SERVER['PHP_SELF']?>" method="get">
-            <input type="search" name="busca" id="busca" placeholder="Titulo do livro">
+            <section>
+                <label for="filtro">Pesquisar por</label>
+                <select name="filtro" id="filtro">
+                    <option value="titulo">Titulo do livro</option>
+                    <option value="autor">Autor do livro</option>
+                    <option value="genero">Gênero do livro</option>
+                    <option value="editora">Editora do livro</option>
+                </select>
+            </section>
+            <input type="search" name="busca" id="busca" value="<?=$pesquisa?>">
             <input type="submit" value="pesquisar">
         </form>
         <table>
@@ -39,10 +47,6 @@
             </tr>
         
             <?php
-                $pesquisa = anti_injection($conexao, $_GET['busca'] ?? "");
-                $sql = "select * from livros where titulo like '%$pesquisa%'";
-                $dados = mysqli_query($conexao, $sql);
-        
                 if(mysqli_num_rows($dados) >= 1){
                     while($itens = mysqli_fetch_assoc($dados)){
                         $titulo = $itens['titulo'];
